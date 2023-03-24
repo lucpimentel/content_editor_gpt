@@ -3,9 +3,13 @@ import openai
 from auxfunctions import openai_api_call
 
 
-openai.api_key = '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'
-
 st.title('Welcome to the GPT Content Editor App!')
+
+
+
+api_key = st.text_input('What is your OpenAI API key?')
+
+openai.api_key = api_key
 
 
 draft_paragraph = st.text_input('Please insert your draft paragraph:')
