@@ -15,7 +15,14 @@ openai.api_key = api_key
 draft_paragraph = st.text_input('Please insert your draft paragraph:')
 
 
-prompt = f'Please correct this draft paragraph: {draft_paragraph}'
+prompt = f'''You are Draft Corrector GPT.
+I will give you one of my draft paragraphs and you will correct it for me.
+
+Please abide to the following rules:
+- Keep your language simple and use simple words
+
+Draft paragraph: {draft_paragraph}
+Corrected paragraph:'''
 
 
 button_isClicked = st.button("Correct Paragraph")
