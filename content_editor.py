@@ -19,7 +19,7 @@ prompt = f'''You are Draft Corrector GPT.
 I will give you one of my draft paragraphs and you will correct it for me.
 
 Please abide to the following rules:
-- Keep your language simple
+- Keep your language simple and clear
 - Write in direct form
 
 Draft paragraph: {draft_paragraph}
