@@ -21,6 +21,7 @@ I will give you one of my draft paragraphs and you will correct it for me.
 Please abide to the following rules:
 - Keep your language simple and clear
 - Write in direct form
+- Use conector phrases or words to connect the sentences.
 
 Draft paragraph: {draft_paragraph}
 Corrected paragraph:'''
