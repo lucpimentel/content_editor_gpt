@@ -38,6 +38,6 @@ button_isClicked = st.button("Correct Paragraph")
 # Create a button to call the function
 if button_isClicked:
     with st.spinner("Loading..."):
-        response_text = openai_api_call(prompt)
+        response_text = openai_api_call(prompt, temperature = 0)
         st.text_area('Corrected Paragraph:',response_text,height = 200)
         button_isClicked = False
