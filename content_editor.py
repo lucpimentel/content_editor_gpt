@@ -25,6 +25,8 @@ Please abide to the following rules:
 - Prefer to use short words.
 - Keep the same structure of the draft.
 - Keep the same points of the draft.
+- Prefer to use vivid words.
+
 
 
 Draft paragraph: {draft_paragraph}
