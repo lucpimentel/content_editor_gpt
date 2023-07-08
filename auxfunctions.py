@@ -1,24 +1,26 @@
-import openai
-def openai_api_call(prompt: str, temperature: int = 0.5, top_p:int = 0.5, max_tokens:int = 1000) -> str:
-        """
-        Calls the OpenAI API with a given prompt
-
-        Args:
-            prompt (str): The prompt to use for generating the text.
-        
-        Returns:
-            str: The generated text.
-        """
-        # Create the completion call using the OpenAI API
-        completion_dict = openai.Completion.create(
-            prompt=prompt,
-            model="text-davinci-003",
-            temperature=temperature,
-            max_tokens= max_tokens,
-            top_p = top_p
-        )
+from langchain.prompts import SystemMessagePromptTemplate, HumanMessagePromptTemplate, ChatPromptTemplate
 
 
-        # Extract and return the generated text from the completion call response
-        response_text = completion_dict['choices'][0]['text'].strip()
-        return response_text
+sys_msg_template = '''You are Draft Corrector GPT.
+I will give you one of my draft paragraphs and you will correct it for me.
+
+Please abide to the following rules:
+- Keep your language simple and clear.
+- Write in direct form.
+- Prefer to use nouns and verbs.
+- Prefer to use short words.
+- Keep the same structure of the draft.
+- Keep the same points of the draft.
+- Prefer to use vivid words.
+
+Begin!'''
+
+
+
+
+sys_msg_prompt = SystemMessagePromptTemplate.from_template(sys_msg_template)
+
+human_msg_template = '{input}'
+human_msg_prompt = HumanMessagePromptTemplate.from_template(human_msg_template)
+
+chat_prompt = ChatPromptTemplate.from_messages([sys_msg_prompt,human_msg_prompt])
