@@ -1,37 +1,26 @@
 import streamlit as st
-import openai
-from auxfunctions import openai_api_call
+import os
+from langchain import LLMChain
+from auxfunctions import chat_prompt
+from langchain.chat_models import ChatOpenAI
 
 
 st.title('Welcome to the GPT Content Editor App!')
 
 
-
 api_key = st.text_input('What is your OpenAI API key?')
 
-openai.api_key = api_key
+os.environ['OPENAI_API_KEY'] = api_key
 
 
 draft_paragraph = st.text_input('Please insert your draft paragraph:')
 
+try:
+    llm = ChatOpenAI(model = 'gpt-4-0613', temperature = 0)
 
-prompt = f'''You are Draft Corrector GPT.
-I will give you one of my draft paragraphs and you will correct it for me.
-
-Please abide to the following rules:
-- Keep your language simple and clear.
-- Write in direct form.
-- Prefer to use nouns and verbs.
-- Prefer to use short words.
-- Keep the same structure of the draft.
-- Keep the same points of the draft.
-- Prefer to use vivid words.
-
-
-
-Draft paragraph: {draft_paragraph}
-Corrected paragraph:'''
-
+    llm_chain = LLMChain(llm = llm, prompt = chat_prompt)
+except:
+    pass
 
 button_isClicked = st.button("Correct Paragraph")
 
@@ -39,6 +28,6 @@ button_isClicked = st.button("Correct Paragraph")
 # Create a button to call the function
 if button_isClicked:
     with st.spinner("Loading..."):
-        response_text = openai_api_call(prompt, temperature = 0)
+        response_text = llm_chain.run(draft_paragraph)
         st.text_area('Corrected Paragraph:',response_text,height = 200)
         button_isClicked = False
