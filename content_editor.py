@@ -16,7 +16,7 @@ os.environ['OPENAI_API_KEY'] = api_key
 draft_paragraph = st.text_input('Please insert your draft paragraph:')
 
 try:
-    llm = ChatOpenAI(model = 'gpt-3.5-turbo-0613', temperature = 0)
+    llm = ChatOpenAI(model = 'gpt-4-0613', temperature = 0)
 
     llm_chain = LLMChain(llm = llm, prompt = chat_prompt)
 except:
